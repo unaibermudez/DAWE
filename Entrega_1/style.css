@@ -71,18 +71,42 @@ main {
     margin: 10px;
 }
 
+/* article */
 article {
     background-color: white;
+    text-align: justify;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     flex: 3;
     margin: 0 20px;
     overflow-y: auto;
-    height: 300px;
+    height: auto;
     margin: 30px;
 }
+.dictionary-list {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
 
+.dictionary-list dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.dictionary-list dd {
+    margin-left: 20px;
+}
+
+
+
+
+
+/* aside */
 
 aside {
     background-color: #333;
@@ -90,15 +114,11 @@ aside {
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
+    margin: 10px;
     text-align: center;
     flex: 1;
-    margin: 10px;
+    height: auto;
 }
-
-
-
-/* aside */
-
 .aside-menu {
     list-style-type: none;
     padding: 0;
@@ -114,6 +134,15 @@ aside {
 
 .aside-menu li a:hover {
     background: #0072ff;
+}
+.aside-image {
+    width: 80%;
+    transition: transform 0.3s ease;
+    border-radius: 5px;
+}
+
+.aside-image:hover {
+    transform: scale(1.1);
 }
 
 /* footer */
