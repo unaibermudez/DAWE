@@ -4,7 +4,7 @@ body {
     padding: 0;
     /* imagen sacada de https://www.magicpattern.design/tools/css-backgrounds*/
     background-image: url(images/css-pattern-by-magicpattern.png);
-    background-size: 600px;
+    background-size: 400px;
     background-repeat: repeat;
     overflow-x: hidden;
 }
