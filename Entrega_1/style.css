@@ -6,13 +6,15 @@ body {
     background-image: url(images/css-pattern-by-magicpattern.png);
     background-size: 400px;
     background-repeat: repeat;
+    background-color: #f9f9f9;
     overflow-x: hidden;
 }
 
 
 /* header */
 header {
-    background: linear-gradient(to right, #0072ff, #00c6ff);
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
     padding: 20px;
     text-align: center;
 }
@@ -22,6 +24,7 @@ header {
     font-size: 2em;
     text-transform: uppercase;
     transition: text-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .page-title:hover {
@@ -29,6 +32,10 @@ header {
 }
 
 /* nav bar */
+nav {
+    background: #333333;
+    padding: 10px;
+}
 .nav-menu {
     list-style-type: none;
     display: flex;
@@ -41,21 +48,23 @@ header {
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background-color 0.15s, color 0.15s;
 }
 
 .nav-item a:hover {
-    background: linear-gradient(to right, #0072ff, #00c6ff);
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    color: white;
 }
 
 .special a {
-    background: #ff0000;
+    background: #003cff;
     color: white;
 }
 
 .special a:hover {
-    background: #ff0000;
-    box-shadow: 0 0 10px #ff0000;
+    background: #003cff;
+    box-shadow: 0 0 10px #003cff;
 }
 
 
@@ -137,14 +146,39 @@ aside {
 .aside-menu li a:hover {
     background: #0072ff;
 }
+
+.image-container {
+    position: relative;
+}
+
 .aside-image {
     width: 80%;
-    transition: transform 0.3s ease;
     border-radius: 5px;
+    transition: width 1s, height 1s, transform 1s, opacity 2s ease;;    
 }
 
 .aside-image:hover {
-    transform: scale(1.1);
+    width: 100%;
+}
+
+.hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .aside-image {
+    opacity: 0.5;
+}
+
+.image-container:hover .hover-text {
+    opacity: 1;
 }
 
 /* footer */
