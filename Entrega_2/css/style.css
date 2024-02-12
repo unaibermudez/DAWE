@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* imagen sacada de https://www.magicpattern.design/tools/css-backgrounds*/
+    background-image: url(../images/css-pattern-by-magicpattern.png);
+    background-size: 400px;
+    background-repeat: repeat;
+    background-color: #f9f9f9;
+    overflow-x: hidden;
+}
+
+
+/* header */
+header {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    padding: 20px;
+    text-align: center;
+}
+
+.page-title {
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    transition: text-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.page-title:hover {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* nav bar */
+nav {
+    background: #333333;
+    padding: 10px;
+}
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-item a:hover {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    color: white;
+}
+
+.special a {
+    background: #003cff;
+    color: white;
+}
+
+.special a:hover {
+    background: #003cff;
+    box-shadow: 0 0 10px #003cff;
+}
+
+
+
+/* div principal */
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 200px;
+    /*background-color: #f0f0f0;*/
+}
+
+main {
+    flex: 3;
+    margin: 10px;
+}
+
+/* article */
+article {
+    background-color: white;
+    text-align: justify;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    flex: 3;
+    margin: 0 20px;
+    overflow-y: auto;
+    height: auto;
+    margin: 30px;
+}
+.dictionary-list {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.dictionary-list dt {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.dictionary-list dd {
+    margin-left: 20px;
+}
+
+
+
+
+
+/* aside */
+
+aside {
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    margin: 10px;
+    text-align: center;
+    flex: 1;
+    height: auto;
+}
+.aside-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.aside-menu li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    transition: background 0.3s ease;
+}
+
+.aside-menu li a:hover {
+    background: #0072ff;
+}
+
+.image-container {
+    position: relative;
+}
+
+.aside-image {
+    width: 80%;
+    border-radius: 5px;
+    transition: width 1s, height 1s, transform 1s, opacity 2s ease;;    
+}
+
+.aside-image:hover {
+    width: 100%;
+}
+
+.hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .aside-image {
+    opacity: 0.5;
+}
+
+.image-container:hover .hover-text {
+    opacity: 1;
+}
+
+/* footer */
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer-menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.footer-menu li a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+    transition: text-decoration 0.3s ease;
+}
+
+.footer-menu li a:hover {
+    text-decoration: underline;
+}
