@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="producto.js"></script>
+		<script src="libro.js"></script>
+		<script src="disco.js"></script>
+		<script>
+			// Modularizamos nuestro codigo incluyendo los anteriores 3 documentos JS
+			// Creamos 3 objetos diferentes para nuestra tienda
+			var libro1 = new Libro("Dublinés", "Alfonso Zapico", 18);
+			var libro2 = new Libro("El arte de volar", "Antonio Altarriba y Kim", 20.90);
+			var disco1 = new Disco("Próxima estación: Esperanza", "Manu Chao", 15, "CD");
+			
+			// Incluimos los objetos en un array tienda
+			var tienda = [];
+			tienda.push(libro1, libro2, disco1);
+			
+			// Esto lo veremos en el siguiente tema, es un gestor de eventos
+			// Lo incluido dentro de esta funcion se ejecutara cuando la pagina se cargue
+			window.onload = function() {
+				// Usando el DOM, cogemos la capa div que hemos creado en el body
+				var imprimirListado = document.getElementById("listado");
+				// Incluimos los productos de nuestra tienda de la siguiente forma:
+				// creamos una capa nueva, hacemos que muestre el texto generado por la 
+				// funcion mostrar de la clase Producto y luego añadimos la capa a nuestra
+				// capa listado
+				for(producto in tienda) {
+					var capa = document.createElement("div");
+					capa.innerHTML = tienda[producto].mostrar();
+					imprimirListado.appendChild(capa);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="listado">
+		</div>
+	</body>
+</html>
