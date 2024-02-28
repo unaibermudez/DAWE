@@ -80,3 +80,25 @@ function agregarAlCarrito(lista_prod, index, cantidad) {
     container.style.width = 'calc(100% - 300px - 40px)'; // Ajusta 300px según el ancho del carrito
 }
 
+// Obtén una referencia al div container y al div carrito
+var container = document.querySelector('.container');
+var carrito = document.getElementById('carrito');
+
+// Define una función para actualizar el ancho del container
+function actualizarAnchoContainer() {
+    var visibility = window.getComputedStyle(carrito).getPropertyValue('visibility');
+    if (visibility === 'visible') {
+        // Si el carrito es visible, el container ocupa el 80% del ancho
+        container.style.width = 'calc(100% - 380px - 40px)'; // Ajusta 300px según el ancho del carrito
+    } else {
+        // Si el carrito no es visible, el container ocupa el 100% del ancho
+        container.style.width = '100%';
+    }
+}
+
+// Llama a la función cuando la página se carga
+actualizarAnchoContainer();
+
+// Llama a la función cuando la visibilidad del carrito cambia
+var observer = new MutationObserver(actualizarAnchoContainer);
+observer.observe(carrito, { attributes: true, attributeFilter: ['style'] });
