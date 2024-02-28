@@ -24,10 +24,10 @@ function cargarProductos() {
                 especificaciones = `Color: ${producto.color}`;
             }
             const plantilla = `
-                <div class="producto" style="border: 1px solid black; margin: 10px;">
-                    <div style="font-size: 20px; font-weight: bold; background-color: #447cc4;color: white;">${producto.nombre}</div>
-                    <p><span style="font-weight: bold;">Precio:</span> ${producto.precio}€</p>
-                    <p><span style="font-weight: bold;">Especificaciones:</span> ${especificaciones}</p>
+                <div class="producto">
+                    <div class="producto-nombre" >${producto.nombre}</div>
+                    <p><span class="producto-precio"">Precio:</span> ${producto.precio}€</p>
+                    <p><span class="producto-specs"">Especificaciones:</span> ${especificaciones}</p>
                     <input type="number" class="spinner" value="0" min="0" max="9">
                     <button class="btn-comprar" disabled>Comprar</button>
                 </div>

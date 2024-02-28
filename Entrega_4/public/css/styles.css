@@ -45,13 +45,26 @@ p {
     margin: 0;
 }
 
-
-.producto-nombre {
-    background-color: #447cc4;
-    color: white;
-    padding: 5px;
+.producto {
+    border: 1px solid black; 
+    margin: 10px;
 }
 
+.producto-nombre {
+    padding: 5px;
+    font-size: 20px; 
+    font-weight: bold; 
+    background-color: #447cc4;
+    color: white;
+}
+
+.producto-precio {
+    font-weight: bold;
+}
+
+.producto-specs{
+    font-weight: bold;
+}
 .carrito {
     width: 25%; /* Cambia el ancho a 25% */
     background-color: lightgray;
