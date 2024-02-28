@@ -1,9 +1,14 @@
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100vh;
 }
 
+.tienda {
+    margin-right: 30px;
+    margin-left: 30px;
+}
 header {
     background-color: #447cc4;
     color: white;
@@ -40,6 +45,7 @@ p {
     margin: 0;
 }
 
+
 .producto-nombre {
     background-color: #447cc4;
     color: white;
@@ -50,6 +56,7 @@ p {
     width: 25%; /* Cambia el ancho a 25% */
     background-color: lightgray;
     padding: 10px;
+    margin-left: 50px;
     position: fixed;
     top: 0;
     right: 0;
@@ -60,10 +67,12 @@ p {
     transform-origin: right; /* Define el punto de origen de la transformación */
 }
 
+/*
 .carrito:hover {
-    width: 30%; /* Amplía el ancho al 30% al pasar el ratón sobre él */
-    transform: scale(1.05); /* Escala el tamaño al 105% */
+    width: 30%; /* Amplía el ancho al 30% al pasar el ratón sobre él 
+    transform: scale(1.05); /* Escala el tamaño al 105% 
 }
+*/
 
 .carritoProductos {
     margin-top: 20px;

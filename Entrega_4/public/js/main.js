@@ -58,11 +58,14 @@ function cargarGestoresEventos() {
             const cantidad = parseInt(spinner.value);
             if (cantidad >= 1 && cantidad <= 9) {
                 boton.disabled = false;
+                boton.textContent = `Comprar ${cantidad}`;
             } else {
                 boton.disabled = true;
+                boton.textContent = "Comprar";
             }
         });
     });
+    
 }
 
 function agregarAlCarrito(lista_prod, index, cantidad) {
@@ -72,4 +75,8 @@ function agregarAlCarrito(lista_prod, index, cantidad) {
     li.textContent = `${cantidad} x ${producto.nombre}`;
     carritoLista.appendChild(li);
     document.getElementById("carrito").style.visibility = "visible";
+    
+    var container = document.querySelector('.container');
+    container.style.width = 'calc(100% - 300px - 40px)'; // Ajusta 300px según el ancho del carrito
 }
+
