@@ -6,6 +6,8 @@ import { Camisetas } from "./camisetas.js";
 window.onload = () => {
     cargarProductos();
     cargarGestoresEventos();
+    actualizarAnchoContainer();
+
 };
 
 function cargarProductos() {
@@ -68,24 +70,66 @@ function cargarGestoresEventos() {
     
 }
 
+var dict_carrito = {};
 function agregarAlCarrito(lista_prod, index, cantidad) {
     const producto = lista_prod.flat()[index];
     const carritoLista = document.getElementById("carrito-lista");
-    const li = document.createElement("li");
-    li.textContent = `${cantidad} x ${producto.nombre}`;
-    carritoLista.appendChild(li);
+    if (producto.nombre in dict_carrito) {
+        //Ya existe el producto en el carrito
+        var max = false;
+        dict_carrito[producto.nombre] += cantidad;   
+        if (dict_carrito[producto.nombre] >= 9) {
+            dict_carrito[producto.nombre] = 9;
+            max = true;
+        } 
+        const carritoItem = document.querySelectorAll('.carrito-item');
+        carritoItem.forEach(item => {
+            if (item.textContent.includes(producto.nombre)) {
+                item.innerHTML = ` 
+                <p><span class="producto-nombre-carrito"">${dict_carrito[producto.nombre]}x ${producto.nombre}</span></p>
+                <p><span class="producto-precio-carrito"">Precio: ${producto.precio}€</span></p>
+                <p><span class="producto-specs-carrito"">Especificaciones: ${obtenerEspecificaciones(producto)}</span></p>
+                `;
+                if (max === true){
+                    item.innerHTML += `<p><span class="producto-max-carrito"">Máximo de productos alcanzado!!</span></p>`;
+                    alert("Máximo de productos alcanzado!!");
+                }
+            }
+        });
+    } else {
+        dict_carrito[producto.nombre] = cantidad;
+        const div = document.createElement("div");
+        div.className = "carrito-item";
+        div.innerHTML = ` 
+        <p><span class="producto-nombre-carrito"">${dict_carrito[producto.nombre]}x ${producto.nombre}</span></p>
+        <p><span class="producto-precio-carrito"">Precio: ${producto.precio}€</span></p>
+        <p><span class="producto-specs-carrito"">Especificaciones: ${obtenerEspecificaciones(producto)}</span></p>
+        `;
+        if (dict_carrito[producto.nombre] >= 9) {
+            div.innerHTML += `<p><span class="producto-max-carrito"">Máximo de productos alcanzado!!</span></p>`;
+            alert("Máximo de productos alcanzado!!");
+
+        }
+        carritoLista.appendChild(div);
+    }
     document.getElementById("carrito").style.visibility = "visible";
-    
-    var container = document.querySelector('.container');
-    container.style.width = 'calc(100% - 300px - 40px)'; // Ajusta 300px según el ancho del carrito
+
 }
 
-// Obtén una referencia al div container y al div carrito
-var container = document.querySelector('.container');
-var carrito = document.getElementById('carrito');
+function obtenerEspecificaciones(producto) {
+    if (producto instanceof RaquetasDeTenis) {
+        return `Peso: ${producto.peso}`;
+    } else if (producto instanceof Zapatillas) {
+        return `Uso: ${producto.uso}`;
+    } else if (producto instanceof Camisetas) {
+        return `Color: ${producto.color}`;
+    }
+}
 
-// Define una función para actualizar el ancho del container
+
 function actualizarAnchoContainer() {
+    var container = document.querySelector('.container');
+    var carrito = document.getElementById('carrito');
     var visibility = window.getComputedStyle(carrito).getPropertyValue('visibility');
     if (visibility === 'visible') {
         // Si el carrito es visible, el container ocupa el 80% del ancho
@@ -96,9 +140,5 @@ function actualizarAnchoContainer() {
     }
 }
 
-// Llama a la función cuando la página se carga
-actualizarAnchoContainer();
-
-// Llama a la función cuando la visibilidad del carrito cambia
 var observer = new MutationObserver(actualizarAnchoContainer);
 observer.observe(carrito, { attributes: true, attributeFilter: ['style'] });
