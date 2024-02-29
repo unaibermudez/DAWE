@@ -93,12 +93,12 @@ p {
     transform-origin: right; /* Define el punto de origen de la transformación */
 }
 
-/*
+
 .carrito:hover {
-    width: 30%; /* Amplía el ancho al 30% al pasar el ratón sobre él 
-    transform: scale(1.05); /* Escala el tamaño al 105% 
+    width: 30%; /* Amplía el ancho al 30% al pasar el ratón sobre él  */
+    transform: scale(1.05); /* Escala el tamaño al 105% */
 }
-*/
+
 
 .carritoProductos {
     margin-top: 20px;
