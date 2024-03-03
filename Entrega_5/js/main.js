@@ -4,7 +4,6 @@ function getBookData() {
     fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&jscmd=details&format=json`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             const book = data[`ISBN:${isbn}`];
             const div = document.getElementById('bookData');
             div.innerHTML = '';
