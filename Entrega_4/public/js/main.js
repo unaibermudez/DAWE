@@ -8,6 +8,13 @@ window.onload = () => {
     cargarGestoresEventos();
     actualizarAnchoContainer();
 
+    const carrito = document.getElementById('carrito');
+    carrito.addEventListener('mouseenter', () => {
+        ampliarCarrito();
+    });
+    carrito.addEventListener('mouseleave', () => {
+        reducirCarrito();
+    });
 };
 
 function cargarProductos() {
@@ -110,6 +117,15 @@ function agregarAlCarrito(lista_prod, index, cantidad) {
             alert("Máximo de productos alcanzado!!");
 
         }
+        // Agregar gestión de eventos mouseenter y mouseleave al elemento del carrito
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = 'white';
+            div.style.color = 'black';
+        });
+        div.addEventListener('mouseleave', () => {
+            div.style.backgroundColor = ''; // Restaura el color de fondo
+            div.style.color = ''; // Restaura el color de texto
+        });
         carritoLista.appendChild(div);
     }
     document.getElementById("carrito").style.visibility = "visible";
@@ -124,6 +140,19 @@ function obtenerEspecificaciones(producto) {
     } else if (producto instanceof Camisetas) {
         return `Color: ${producto.color}`;
     }
+}
+
+
+function ampliarCarrito() {
+    const carrito = document.getElementById('carrito');
+    carrito.style.width = '30%'; // Amplía el ancho al 30%
+    carrito.style.transform = 'scale(1.05)'; // Escala el tamaño al 105%
+}
+
+function reducirCarrito() {
+    const carrito = document.getElementById('carrito');
+    carrito.style.width = '25%'; // Restaura el ancho al 25%
+    carrito.style.transform = 'scale(1)'; // Restaura el tamaño original
 }
 
 
