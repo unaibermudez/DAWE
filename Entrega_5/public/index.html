@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Data</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <script src="../js/main.js"></script>
+</head>
+<body>
+    <div class="consultar">
+        <label id="isbn-label" for="isbn">ISBN: </label>
+        <select id="isbn">
+            <option value="9781491920497">9781491920497</option>
+            <option value="1491910399">1491910399</option>
+            <option value="1491946008">1491946008</option>
+            <option value="1491978236">1491978236</option>
+            <option value="9781491906187">9781491906187</option>
+        </select>
+        <button onclick="getBookData()">Obtener datos del libro</button>
+    </div>
+    <div id="bookData"></div>
+</body>
+</html>
