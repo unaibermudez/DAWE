@@ -13,29 +13,25 @@ document.addEventListener("DOMContentLoaded", function() {
         var errors = [];
 
         if (name === "") {
-            errors.push("Por favor, introduce tu nombre.");
+            errors.push("name: Por favor, introduce tu nombre.");
         }
 
         var phonePattern = /^\d{3}-?\d{3}-?\d{3}$/;
         if (!phonePattern.test(phone)) {
-            errors.push("Por favor, introduce un número de teléfono válido (123-456-789).");
+            errors.push("phone: Por favor, introduce un número de teléfono válido (123-456-789).");
         }
 
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
-            errors.push("Por favor, introduce un correo electrónico válido.");
+            errors.push("email: Por favor, introduce un correo electrónico válido.");
         }
 
         if (books === "") {
-            errors.push("Por favor, selecciona al menos un libro.");
+            errors.push("books: Por favor, selecciona al menos un libro.");
         }
 
         if (quantity < 1 || quantity > 5) {
-            errors.push("La cantidad de libros debe estar entre 1 y 5.");
-        }
-
-        if (files.length === 0) {
-            errors.push("Por favor, selecciona al menos un archivo para cargar.");
+            errors.push("quantity: La cantidad de libros debe estar entre 1 y 5.");
         }
 
         var statusMessages = document.getElementById("statusMessages");
@@ -46,12 +42,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Formulario enviado correctamente.");
             document.getElementById("myForm").reset();
         } else {
-            var errorMessage = "<ul>";
             errors.forEach(function(error) {
-                errorMessage += "<li>" + error + "</li>";
+                var fieldName = error.split(':')[0].toLowerCase();
+                var errorMessage = error.split(':')[1];
+                document.getElementById(fieldName + "Error").innerHTML = errorMessage;
             });
-            errorMessage += "</ul>";
-            statusMessages.innerHTML = errorMessage;
             console.log("Errores:", errors);
         }
     });
@@ -96,10 +91,14 @@ document.addEventListener("DOMContentLoaded", function() {
     function handleFiles(files) {
         var statusMessages = document.getElementById("statusMessages");
         var fileArray = [...files];
-        statusMessages.innerHTML = "<p>Archivos seleccionados:</p><ul>";
-        fileArray.forEach(file => {
-            statusMessages.innerHTML += "<li>" + file.name + "</li>";
-        });
-        statusMessages.innerHTML += "</ul>";
+        if (fileArray.length > 0) {
+            statusMessages.innerHTML = "<p>Archivos seleccionados:</p><ul>";
+            fileArray.forEach(file => {
+                statusMessages.innerHTML += "<li>" + file.name + "</li>";
+            });
+            statusMessages.innerHTML += "</ul>";
+        } else {
+            statusMessages.innerHTML = "<p>No se han seleccionado archivos.</p>";
+        }
     }
 });
