@@ -53,17 +53,38 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 console.log("Respuesta del servidor:", data);
                 if (data.success) {
-                    statusMessages.innerHTML = "<p>Formulario enviado correctamente.</p>";
+                    // Imprimir datos del archivo
+                    console.log("Nombre del archivo:", data.file.name);
+                    console.log("Tamaño del archivo:", data.file.size);
+                    console.log("Tipo de archivo:", data.file.type);
+                
+                    // Obtener la información del formulario
+                    var formDataList = "<ul>" +
+                        "<li>Nombre: " + name + "</li>" +
+                        "<li>Teléfono: " + phone + "</li>" +
+                        "<li>E-mail: " + email + "</li>" +
+                        "<li>Libro: " + books + "</li>" +
+                        "<li>Cantidad: " + quantity + "</li>" +
+                        "</ul>";
+                
+                    // Concatenar los mensajes en una sola línea
+                    var fileInfoMessage = "Nombre del archivo: " + data.file.name +
+                        " | Tamaño del archivo: " + data.file.size + " bytes" +
+                        " | Tipo de archivo: " + data.file.type;
+                
+                    // Resto del código para mostrar mensajes de estado en la página
+                    var statusMessages = document.getElementById("statusMessages");
+                    statusMessages.innerHTML = "<p>Mensajes de estado.</p>";
+                    statusMessages.innerHTML += "<p>" + fileInfoMessage + "</p>"; // Agregar la información del archivo en una sola línea
+                    statusMessages.innerHTML += "<p>Datos del formulario:</p>";
+                    statusMessages.innerHTML += formDataList; // Agregar la información del formulario en una lista
                     document.getElementById("myForm").reset();
-                    
+                    statusMessages.innerHTML += "<p></p>";
                 } else {
                     statusMessages.innerHTML = "<p>Error al enviar el formulario.</p>";
                 }
+                
             })
-            .catch(error => {
-                console.error("Error al enviar el formulario:", error);
-                statusMessages.innerHTML = "<p>Error al enviar el formulario.</p>";
-            });
         } else {
             errors.forEach(function(error) {
                 var fieldName = error.split(':')[0].toLowerCase();

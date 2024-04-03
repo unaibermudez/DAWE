@@ -46,13 +46,10 @@ app.post("/upload/files", upload.single('file'), (req, res) => {
     // Prepare response data
     const responseData = {
         success: true,
-        formData: {
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            email: req.body.email
-        },
-        files: {
-            file: `/imgs/${req.file.filename}`
+        file: {
+            name: req.file.originalname,
+            type: req.file.mimetype,
+            size: req.file.size
         }
     };
 
