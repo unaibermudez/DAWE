@@ -38,12 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
         statusMessages.innerHTML = "";
 
         if (errors.length === 0) {
-            // Crear objeto FormData para enviar datos y archivos
             var formData = new FormData();
             formData.append('first_name', name);
-            formData.append('last_name', ''); // No hay campo last_name en tu formulario, ajusta según tu necesidad
+            formData.append('last_name', ''); 
             formData.append('email', email);
-            formData.append('file', files[0]); // Solo enviamos el primer archivo
+            formData.append('file', files[0]); 
 
             fetch('/upload/files', {
                 method: 'POST',
@@ -53,12 +52,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 console.log("Respuesta del servidor:", data);
                 if (data.success) {
-                    // Imprimir datos del archivo
                     console.log("Nombre del archivo:", data.file.name);
                     console.log("Tamaño del archivo:", data.file.size);
                     console.log("Tipo de archivo:", data.file.type);
                 
-                    // Obtener la información del formulario
                     var formDataList = "<ul>" +
                         "<li>Nombre: " + name + "</li>" +
                         "<li>Teléfono: " + phone + "</li>" +
@@ -67,22 +64,33 @@ document.addEventListener("DOMContentLoaded", function() {
                         "<li>Cantidad: " + quantity + "</li>" +
                         "</ul>";
                 
-                    // Concatenar los mensajes en una sola línea
                     var fileInfoMessage = "Nombre del archivo: " + data.file.name +
                         " | Tamaño del archivo: " + data.file.size + " bytes" +
                         " | Tipo de archivo: " + data.file.type;
                 
-                    // Resto del código para mostrar mensajes de estado en la página
                     var statusMessages = document.getElementById("statusMessages");
                     statusMessages.innerHTML = "<p>Mensajes de estado.</p>";
-                    statusMessages.innerHTML += "<p>" + fileInfoMessage + "</p>"; // Agregar la información del archivo en una sola línea
+                    statusMessages.innerHTML += "<p>" + fileInfoMessage + "</p>"; 
                     statusMessages.innerHTML += "<p>Datos del formulario:</p>";
-                    statusMessages.innerHTML += formDataList; // Agregar la información del formulario en una lista
+                    statusMessages.innerHTML += formDataList; 
+
+                    if (files.length > 0) {
+                        var imgElement = document.createElement("img");
+                        imgElement.src = URL.createObjectURL(files[0]);
+                        imgElement.style.cursor = "pointer"; 
+                        imgElement.onclick = function() {
+                            window.open(imgElement.src, "_blank"); 
+                        };
+
+                        statusMessages.appendChild(imgElement);
+                    }
+                    
                     document.getElementById("myForm").reset();
                     statusMessages.innerHTML += "<p></p>";
                 } else {
                     statusMessages.innerHTML = "<p>Error al enviar el formulario.</p>";
                 }
+                
                 
             })
         } else {
