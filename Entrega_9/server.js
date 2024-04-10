@@ -31,23 +31,24 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-app.post("/upload/files", upload.single('file'), (req, res) => {
-    // Check if file was uploaded
-    if (!req.file) {
-        return res.status(400).json({ success: false, message: "No file uploaded" });
+app.post("/upload/files", upload.array('files'), (req, res) => {
+    // Check if files were uploaded
+    if (!req.files || req.files.length === 0) {
+        return res.status(400).json({ success: false, message: "No files uploaded" });
     }
 
     const responseData = {
         success: true,
-        file: {
-            name: req.file.originalname,
-            type: req.file.mimetype,
-            size: req.file.size
-        }
+        files: req.files.map(file => ({
+            name: file.originalname,
+            type: file.mimetype,
+            size: file.size
+        }))
     };
 
     res.status(200).json(responseData);
 });
+
 
 const port = 3000;
 app.listen(port, () => {

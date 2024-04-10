@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", function() {
             formData.append('first_name', name);
             formData.append('last_name', ''); 
             formData.append('email', email);
-            formData.append('file', files[0]); 
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
 
             fetch('/upload/files', {
                 method: 'POST',
@@ -52,10 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 console.log("Respuesta del servidor:", data);
                 if (data.success) {
-                    console.log("Nombre del archivo:", data.file.name);
-                    console.log("Tamaño del archivo:", data.file.size);
-                    console.log("Tipo de archivo:", data.file.type);
-                
                     var formDataList = "<ul>" +
                         "<li>Nombre: " + name + "</li>" +
                         "<li>Teléfono: " + phone + "</li>" +
@@ -64,34 +62,45 @@ document.addEventListener("DOMContentLoaded", function() {
                         "<li>Cantidad: " + quantity + "</li>" +
                         "</ul>";
                 
-                    var fileInfoMessage = "Nombre del archivo: " + data.file.name +
-                        " | Tamaño del archivo: " + data.file.size + " bytes" +
-                        " | Tipo de archivo: " + data.file.type;
-                
+                        
                     var statusMessages = document.getElementById("statusMessages");
                     statusMessages.innerHTML = "<p>Mensajes de estado.</p>";
-                    statusMessages.innerHTML += "<p>" + fileInfoMessage + "</p>"; 
                     statusMessages.innerHTML += "<p>Datos del formulario:</p>";
+                    data.files.forEach(function(file) {
+                        var fileInfoMessage = "Nombre del archivo: " + file.name +
+                            " | Tamaño del archivo: " + file.size + " bytes" +
+                            " | Tipo de archivo: " + file.type;
+                        statusMessages.innerHTML += "<p>" + fileInfoMessage + "</p>";
+                    });
                     statusMessages.innerHTML += formDataList; 
-
+                    
                     if (files.length > 0) {
-                        var imgElement = document.createElement("img");
-                        imgElement.src = URL.createObjectURL(files[0]);
-                        imgElement.style.cursor = "pointer"; 
-                        imgElement.onclick = function() {
-                            window.open(imgElement.src, "_blank"); 
-                        };
-
-                        statusMessages.appendChild(imgElement);
+                        console.log("Archivos :", files.length);
+                        for (let i = 0; i < files.length; i++) {
+                            var imgElement = document.createElement("img");
+                            imgElement.src = URL.createObjectURL(files[i]);
+                            imgElement.style.cursor = "pointer"; 
+                            statusMessages.appendChild(imgElement);
+                        }
+                    
+                        // Add event listener to the parent element
+                        statusMessages.addEventListener("click", function(event) {
+                            if (event.target.tagName === 'IMG') {
+                                console.log("Image clicked:", event.target.src);
+                                window.open(event.target.src, "_blank"); 
+                            }
+                        });
                     }
+                    
+                    
+
                     
                     document.getElementById("myForm").reset();
                     statusMessages.innerHTML += "<p></p>";
                 } else {
+                    var statusMessages = document.getElementById("statusMessages");
                     statusMessages.innerHTML = "<p>Error al enviar el formulario.</p>";
                 }
-                
-                
             })
         } else {
             errors.forEach(function(error) {
@@ -144,13 +153,18 @@ document.addEventListener("DOMContentLoaded", function() {
         var statusMessages = document.getElementById("statusMessages");
         var fileArray = [...files];
         if (fileArray.length > 0) {
-            statusMessages.innerHTML = "<p>Archivos seleccionados:</p><ul>";
+            var fileList = "<p>Archivos seleccionados:</p><ul>";
             fileArray.forEach(file => {
-                statusMessages.innerHTML += "<li>" + file.name + "</li>";
+                fileList += "<li>" + file.name + "</li>";
             });
-            statusMessages.innerHTML += "</ul>";
+            fileList += "</ul>";
+            statusMessages.innerHTML = fileList;
         } else {
             statusMessages.innerHTML = "<p>No se han seleccionado archivos.</p>";
         }
     }
+    
+    
 });
+
+
