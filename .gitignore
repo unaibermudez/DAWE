@@ -4,6 +4,8 @@ entrega_7/node_modules
 entrega_8/node_modules
 entrega_9/node_modules
 entrega_9/public/imgs/*
+!entrega_9/public/imgs/
+
 
 node_modules
 package-lock.json
