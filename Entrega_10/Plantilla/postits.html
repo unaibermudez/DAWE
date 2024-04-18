@@ -1,18 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Post-its</title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="postits.css">
-<script src="postits.js"></script>
+    <title>Post-its</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="postits.css">
+    <script src="postits.js"></script>
 </head>
 <body>
-	<form>
-	   <input type="text" id="note_text" />
-	   <input type="button" id="add_button" value="Añadir nuevo post-it">
-	</form>
-	
-	<ul id="stickies">
-	</ul>
+    <form>
+        <input type="text" id="note_text" />
+        <input type="button" id="add_button" value="Añadir nuevo post-it">
+        <input type="button" id="clear_button" value="Eliminar todos los post-its">
+        <input type="button" id="show_local_storage" value="muestra">
+    </form>
+
+    <p id="total_space"></p> <!-- Para mostrar el espacio total utilizado en KB -->
+
+    <ul id="stickies">
+    </ul>
 </body>
 </html>
