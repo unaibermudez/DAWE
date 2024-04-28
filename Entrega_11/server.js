@@ -1,70 +1,36 @@
-let express = require('express');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var admin = require("firebase-admin");
-var MongoDBStore = require('connect-mongodb-session')(session);
-var path = require('path');
+// server.js
+const express = require('express');
+const path = require('path');
+const app = express();
+const port = process.env.PORT || 3000;
 
-function checkAuth(req, res, next) {
-  if (!req.session.userId) {
-    res.send('Necesitas autenticarte primero');
-  } else {
+// Servir archivos estáticos desde el directorio 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Middleware para verificar la autenticación del usuario
+function requireAuth(req, res, next) {
+    const authToken = req.get('Authorization');
+
+    // Verificar si el usuario está autenticado
+    if (!authToken) {
+        return res.status(401).send('Please login first');
+    }
+    // Continuar con el siguiente middleware si el usuario está autenticado
     next();
-  }
 }
 
-let app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-var serviceAccount = require("./dawe-key.json");
-
-var store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/dawe',
-  collection: 'dawe-firebase'
+// Ruta para servir la página de usuarios protegida
+app.get('/users', requireAuth, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'users.html'));
 });
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  store: store,
-  saveUninitialized: true,
-}));
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-app.use(express.static('public'));
-
+// Ruta para servir la página de inicio
 app.get('/', (req, res) => {
-  if (req.session.userId) {
-    res.redirect('/users');
-  } else {
-    res.redirect('/email-password.html');
-  }
+    res.sendFile(path.join(__dirname, 'public', 'email-password.html'));
 });
 
-app.post('/getToken', (req, res) => {
-  var idToken = req.body.idToken;
-
-  admin.auth().verifyIdToken(idToken)
-    .then(function(decodedToken) {
-      var uid = decodedToken.uid;
-      req.session.userId = uid;
-      res.redirect('/users');
-    }).catch(function(error) {
-      res.send('Token inválido');
-    });
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor en ejecución en el puerto ${port}`);
 });
-
-app.get('/users', checkAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'users.html'));
-});
-
-app.get('/logout', function(req, res){
-  req.session.destroy(function(){
-    res.redirect('/?logout');
-  });
-});
-
-app.listen(3000)

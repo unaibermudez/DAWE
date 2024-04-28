@@ -1,3 +1,4 @@
+<!-- users.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,22 +16,28 @@
             projectId: "dawe-8739d"
         };
         firebase.initializeApp(firebaseConfig);
-    </script>
-</head>
-<body>
-    <!-- Add a button for signing out -->
-    <button onclick="signOut()">Sign Out</button>
 
-    <!-- Add the sign out function -->
-    <script>
+        // Verificar la autenticación al cargar la página
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                // Redirigir a la página de inicio si el usuario no está autenticado
+                window.location.href = '/';
+            }
+        });
+
+        // Función para cerrar sesión
         function signOut() {
             firebase.auth().signOut().then(() => {
-                window.location.href = '/logout';
+                window.location.href = '/';
             }).catch((error) => {
-                // An error happened.
+                // Manejar errores
                 console.error(error);
             });
         }
     </script>
+</head>
+<body>
+    <!-- Botón para cerrar sesión -->
+    <button onclick="signOut()">Sign Out</button>
 </body>
 </html>
