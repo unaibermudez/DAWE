@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <!-- Add Firebase JavaScript SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <!-- Initialize Firebase -->
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBr0M8OnCQ00HsdqUSaBKnjMXBG-fsi5mw",
+            authDomain: "dawe-55ca2.firebaseapp.com",
+            projectId: "dawe-55ca2"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <!-- Add a button for signing out -->
+    <button onclick="signOut()">Sign Out</button>
+
+    <!-- Add the sign out function -->
+    <script>
+        function signOut() {
+            firebase.auth().signOut().then(() => {
+                window.location.href = '/logout';
+            }).catch((error) => {
+                // An error happened.
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>
