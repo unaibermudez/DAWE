@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif; /* replace with your desired font */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.carrito-item{
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+}
+.producto-nombre-carrito{
+    font-weight: bold;
+}
+.producto-max-carrito {
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+}
+header {
+    background-color: #447cc4;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+main {
+    flex: 1;
+    display: flex;
+}
+
+section {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid black;
+}
+
+section:last-child {
+    border-right: none;
+}
+
+h1 {
+    margin-top: 0;
+    background-color: #447cc4;
+    color: white;
+    padding: 10px;
+}
+
+p {
+    margin: 0;
+}
+
+.producto {
+    border: 1px solid black; 
+    margin: 10px;
+}
+
+.producto-nombre {
+    padding: 5px;
+    font-size: 20px; 
+    font-weight: bold; 
+    background-color: #447cc4;
+    color: white;
+}
+
+.producto-precio {
+    font-weight: bold;
+}
+
+.producto-specs{
+    font-weight: bold;
+}
+.carrito {
+    width: 25%; /* Cambia el ancho a 25% */
+    background-color: lightgray;
+    padding: 10px;
+    margin-left: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    visibility: hidden;
+    transition: width 0.5s, transform 0.2s; /* Agrega transform a la transición */
+    transform-origin: right; /* Define el punto de origen de la transformación */
+}
+
+.carrito:hover {
+    width: 30%; /* Amplía el ancho al 30% al pasar el ratón sobre él */
+    transform: scale(1.05); /* Escala el tamaño al 105% */
+}
+
+.carritoProductos {
+    margin-top: 20px;
+}
+
+.carritoProducto {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.carritoProducto:last-child {
+    border-bottom: none;
+}

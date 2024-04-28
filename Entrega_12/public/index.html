@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La tienda de David & Unai</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <style>
+        #offlineMessage {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="offlineMessage">Estás sin conexión</div>
+    <div class="container">
+        <div class="tienda" id="tienda">
+            <header>
+                <h1>David & Unai Shop</h1>
+            </header>
+            <main>
+                <section id="raquetasDeTenis">
+                    <h1>Raquetas de Tenis</h1>
+                </section>
+                <section id="Zapatillas">
+                    <h1>Zapatillas</h1>
+                </section>
+                <section id="Camisetas">
+                    <h1>Camisetas</h1>
+                </section>
+            </main>
+        </div>
+        <div class="carrito" id="carrito" style="visibility: hidden;">
+            <h2>Carrito de Compra</h2>
+            <div id="carrito-lista"></div> 
+        </div>
+    </div>
+    <script src="js/main.js" type="module"></script>
+    <script>
+        function updateOnlineStatus(event) {
+            var offlineMessage = document.getElementById('offlineMessage');
+			offlineMessage.innerHTML = "<div class='productoEnCarrito'>Estas offline.</div>"
+            if (navigator.onLine) {
+                offlineMessage.style.display = 'none';
+            } else {
+                offlineMessage.style.display = 'block';
+            }
+        }
+
+        updateOnlineStatus();
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
