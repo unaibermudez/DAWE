@@ -16,14 +16,21 @@
             projectId: "dawe-8739d"
         };
         firebase.initializeApp(firebaseConfig);
-
-        // Verificar la autenticación al cargar la página
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (!user) {
-                // Redirigir a la página de inicio si el usuario no está autenticado
-                window.location.href = '/';
+    
+        // Función para mostrar los detalles del usuario
+        function showUserDetails(user) {
+                const userDetailsContainer = document.getElementById('userDetails');
+                if (user) {
+                    userDetailsContainer.innerHTML = `
+                        <p>Welcome, ${user.displayName}!</p>
+                        <p>Email: ${user.email}</p>
+                        <img src="${user.photoURL}" alt="Profile Picture">
+                        <button onclick="signOut()">Sign Out</button>
+                    `;
+                } else {
+                    userDetailsContainer.innerHTML = '<p>Please log in to view this page.</p>';
+                }
             }
-        });
 
         // Función para cerrar sesión
         function signOut() {
@@ -34,7 +41,12 @@
                 console.error(error);
             });
         }
-    </script>
+
+        // Obtener detalles del usuario actual
+        firebase.auth().onAuthStateChanged((user) => {
+            showUserDetails(user);
+        });
+        </script>
 </head>
 <body>
     <!-- Botón para cerrar sesión -->
