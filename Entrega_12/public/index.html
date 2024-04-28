@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La tienda de David & Unai</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <style>
-        #offlineMessage {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background-color: red;
-            color: white;
-            padding: 10px;
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <div id="offlineMessage">Estás sin conexión</div>
@@ -43,7 +32,7 @@
     </div>
     <script src="js/main.js" type="module"></script>
     <script>
-        function updateOnlineStatus(event) {
+        function actualizarEstadoRed(event) {
             var offlineMessage = document.getElementById('offlineMessage');
 			offlineMessage.innerHTML = "<div class='productoEnCarrito'>Estas offline.</div>"
             if (navigator.onLine) {
@@ -53,10 +42,10 @@
             }
         }
 
-        updateOnlineStatus();
+        actualizarEstadoRed();
 
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
+        window.addEventListener('online', actualizarEstadoRed);
+        window.addEventListener('offline', actualizarEstadoRed);
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
