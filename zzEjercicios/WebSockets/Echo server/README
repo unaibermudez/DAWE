@@ -1,0 +1,18 @@
+INSTALACIÓN:
+-----------------------
+
+Necesitamos instalar primero algunos paquetes usando npm. Para ello:
+
+> npm install
+
+CÓMO EJECUTAR:
+-----------------------
+
+1-Poner en marcha el servidor llamando a:
+
+> node echo-server.js
+
+2-Poner en marcha el cliente usando:
+
+> npm start
+
