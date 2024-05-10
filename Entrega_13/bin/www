@@ -35,8 +35,8 @@ server.on('listening', onListening);
 
 
 const httpsServer = https.createServer({
-    key: fs.readFileSync('key1.pem'),
-    cert: fs.readFileSync('cert1.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/elorza.me/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/elorza.me/fullchain.pem')
 }, app);
 
 httpsServer
