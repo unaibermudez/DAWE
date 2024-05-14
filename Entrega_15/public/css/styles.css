@@ -1,0 +1,16 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    height: 80px;
+    background-image: url("../images/wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-shadow: 1px 0 gray, -1px 0 gray, 0 1px gray, 0 -1px gray,
+               1px 1px gray, -1px -1px gray, 1px -1px gray, -1px 1px gray;
+}
