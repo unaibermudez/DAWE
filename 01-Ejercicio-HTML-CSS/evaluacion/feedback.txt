@@ -1,0 +1,6 @@
+NOTA : 9,5
+
+FEEDBACK:
+Kaixo Unai,
+
+Oso ondo, me ha faltado el footer fijado abajo. Si haces zoom out comprobarás que simplemente está debajo del último elemento.
