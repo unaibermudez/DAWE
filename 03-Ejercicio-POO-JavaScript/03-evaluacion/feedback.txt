@@ -1,0 +1,13 @@
+NOTA: 7.5
+
+FEEDBACK: Kaixo Unai,
+
+Te comento los fallos:
+
+- A nivel de diseño, las columnas no tenían que estirarse por completo, sólo se estiraban tanto como su contenido indicase (es decir, el número de productos). Además, la longitud de cada columna era independiente.
+
+- No usas window.onload para esperar a que la página esté cargada ni pones la etiqueta <script> antes de </body>. Al usar módulos, no es problema, pero date cuenta de que si no usasemos módulos tu código no funcionaría.
+
+- En main.js no haces la función que pedía para que, dado un producto, se genere el código HTML pertinente.
+
+- En tus clases, los métodos getter/setter no tienen la palabra clave get/set, por tanto son métodos normales y no hacen lo que esperas.
