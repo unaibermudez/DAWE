@@ -1,0 +1,104 @@
+ <!doctype html>
+<html lang="en">
+ <meta charset="utf-8">
+<link href=”css/style.css” rel=”stylesheet” />
+ <head>
+	<script>
+	
+		
+		function getLibro(){ 
+				var texto 
+				var valor = document.getElementById("miSelect").value 
+				texto += "nValor de la opcion escogida: " + valor 	
+				getInfoLibro(valor);
+		}
+		
+		
+		function getInfoLibro(ISBN){
+			
+			var valor=fetch("https://openlibrary.org/api/books?bibkeys=ISBN:"+ISBN+"&jscmd=details&format=json").then(r1=>r1.json()).then(r1=>mostrarInfoLibro(r1["ISBN:"+ISBN]))
+		}
+		
+		function mostrarInfoLibro(jsonLibro){
+			var titulo= jsonLibro.details.title
+			console.log(titulo)
+			document.getElementById("titulo").innerHTML=titulo;
+			document.getElementById("tituloTitulo").innerHTML="TITULO";
+
+			var i=jsonLibro.details.authors.length-1;
+			var autores=""
+			while(i>=0){
+				autores+=jsonLibro.details.authors[i].name+"<br>"
+				i=i-1;
+			}
+			document.getElementById("autores").innerHTML=autores;
+			document.getElementById("tituloAutores").innerHTML="AUTORES";
+
+			
+			new Promise(resolve => {
+				const image= new Image();
+				image.addEventListener('load', () => {
+						resolve(image);
+				});
+				var url=jsonLibro.thumbnail_url;
+				url=url.replace("S.jpg","L.jpg");
+				image.src=url;
+				console.log(image);
+				document.getElementById("imagenLibro").setAttribute('src',image.src);
+				document.getElementById("tituloImagen").innerHTML="IMAGEN";
+				document.getElementById("tablaResultado").setAttribute("border","1");
+
+			});
+		}
+	</script>
+ 	<title>OPEN LIBRARY</title>
+ </head>
+ <body>
+<section><header>
+ <h1 align="center">OPEN LIBRARY </h1>
+<header>
+</section>
+
+<section id="formulario">
+<form name="fomul"> 
+	Elige el ISBN del libro que quieras consultar: 
+	<select id="miSelect"> 
+		<option value="9781491920497" selected>ISBN: 9781491920497
+		<option value="1491910399" >ISBN: 1491910399
+		<option value="1491978236">ISBN: 1491978236
+		<option value="9781491906187">ISBN: 9781491906187
+	</select> 
+	<br> 
+	<br> 
+	<input type=button value="Obtener datos del libro" onclick=getLibro()> 
+</form>
+
+<table id="tablaResultado">
+<tr>
+<td>
+	<p id=tituloTitulo></p>
+</td>
+<td>
+	<p id=tituloAutores></p>
+</td>
+<td>
+	<p id=tituloImagen></p>
+</td>
+</tr>
+<tr>
+<td>
+	<p id="titulo"><p>
+</td>
+<td>
+	<p id="autores"><p>
+</td>
+<td>
+<img id="imagenLibro">
+</td>
+</tr>
+
+</table>
+</section>
+
+</body>
+</html>

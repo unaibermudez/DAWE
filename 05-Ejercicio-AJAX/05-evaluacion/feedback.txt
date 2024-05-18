@@ -1,0 +1,5 @@
+NOTA: 9,5
+
+FEEDBACK: Kaixo Unai y David,
+
+Oso ondo, me ha fallado que habéis hecho la gestión del evento click usando el atributo HTML onclick en lugar de asignarle al botón/formulario un gestor de eventos en el fichero JS.
