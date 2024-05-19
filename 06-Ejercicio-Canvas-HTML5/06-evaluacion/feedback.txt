@@ -1,0 +1,5 @@
+NOTA: 7
+
+FEEDBACK: Kaixo David y Unai,
+
+Lo que habéis entregado no es exactamente lo que estaba pidiendo. En el enunciado se muestra un único canvas sobre el que se dibujan todos los elementos (incluido el visor zoom). Además, el choque de la ventana deslizante era con el spritesheet, no con el borde del canvas. Por otro lado, no habéis incluido el texto con las coordenadas de la ventana.
