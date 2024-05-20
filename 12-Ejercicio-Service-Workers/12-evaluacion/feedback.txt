@@ -1,0 +1,5 @@
+NOTA: 5
+
+FEEDBACK: Kaixo David y Unai,
+
+La página no funciona con HTTPS y, por tanto, no funciona el service worker.
