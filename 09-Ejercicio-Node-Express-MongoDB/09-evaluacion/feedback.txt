@@ -1,0 +1,9 @@
+NOTA: 8,5
+
+FEEDBACK: Kaixo David y Unai,
+
+Os comento los fallos:
+
+- En el servidor no se ha realizado la gestión de errores de multer que comentaba en el enunciado (hay un enlace explicando cómo).
+
+- En el cliente no se usa la respuesta del servidor para mostrar datos.
