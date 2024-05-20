@@ -1,0 +1,12 @@
+NOTA: 7,75
+
+FEEDBACK: Kaixo David y Unai,
+
+Os comento los fallos:
+
+- Se pedía tener en cuenta que el localStorage puede no estar vacío. Al borrar los posits vaciáis por completo el localStorage, por tanto se borra cualquier elemento aparte de los posits.
+
+- Al cálculo del espacio le falta una división entre 8 para pasar de bits a bytes.
+
+- Se pide que los identificadores de los posits empiecen en 1.
+
