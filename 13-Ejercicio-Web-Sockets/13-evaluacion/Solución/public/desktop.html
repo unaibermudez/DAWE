@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="module" src="js/gestorCanvas.js"></script>
+	<style>
+	#stackCanvas {
+    position:relative;
+    }
+	#stackCanvas > canvas {
+		position:absolute;
+		left:0;
+		top:0;
+    }
+	#imagenAmpliada {
+	 position: absolute;
+		left: 480px;
+	}
+	</style>
+</head>
+<body>
+
+	<br><br>
+	<div id="stackCanvas">
+		<canvas id="lienzofondo"  width="476" height="480"> </canvas>
+		<canvas id="lienzo" width="476" height="480"></canvas>
+	<div>
+	<canvas id="imagenAmpliada" width="56" height="480" style></canvas>
+</body>
+</html>
