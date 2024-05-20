@@ -1,0 +1,42 @@
+<% include partials/header.ejs %>
+
+<h1>Hello <%= email %> </h1>
+
+<h1>Insertar cliente</h1>
+
+<ul>
+	<% if (errors){ %>
+	<% errors.forEach( function(error) { %>
+		<li><%=error.msg %> </li>
+	<% }) %>
+	<% } %>
+</ul>
+
+
+
+<form method="POST" action="/users/add" id="form">
+	<label>Nombre</label>
+	<input id="first_name" type="text" name="first_name">
+	<br>
+	<label>Apellido</label>
+	<input id="last_name" type="text" name="last_name">
+	<br>
+	<label>Email</label>
+	<input id="email" type="text" name="email">
+	<br>
+	 <input id="boton" type="submit" value="Enviar" name="submit">
+</form>
+
+<% if (!errors) { %>
+<h1><%=title %></h1>
+<ul>
+<%  users.forEach( function(user) { %>
+<li><%=user.first_name %> <%= user.last_name%> - <a href="#" class="dataUser" data-id="<%= user._id %>">Edit</a> - <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a> </li>
+<% }) } %>
+</ul>
+
+
+<a href='/logout'>Logout</a>
+
+<% include partials/footer.ejs %>
+
